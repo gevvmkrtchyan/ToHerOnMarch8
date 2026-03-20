@@ -172,13 +172,27 @@ document.body.appendChild(heart)
 setTimeout(()=>heart.remove(),6000)
 },400)
 
+/* fetching json file */
+
+let data = null;
+
+fetch('data.json')
+  .then(res => res.json())
+  .then(json => {
+    data = json;
+  });
 
 function checkName(){
 
 const input=document.getElementById("nickname").value.trim()
 const box=document.getElementById("box")
 
-if(input==="nickname"){
+if(!data){
+alert("Data not loaded yet");
+return;
+}
+
+if(input === data.nickname){
 
 document.body.style.background =
 "linear-gradient(135deg,#7CFCA5,#4ade80)"

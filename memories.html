@@ -117,53 +117,53 @@ h1{
 
 <div class="letter" id="letter"></div>
 
-<div class="gallery">
-  <div class="polaroid">
-    <img src="photo1.jpg" alt="Memory 1">
-  </div>
-  <div class="polaroid">
-    <img src="photo2.jpg" alt="Memory 2">
-  </div>
-  <div class="polaroid">
-    <img src="photo3.jpg" alt="Memory 3">
-  </div>
-  <div class="polaroid">
-    <img src="photo4.jpg" alt="Memory 4">
-  </div>
-  <div class="polaroid">
-    <img src="photo5.jpg" alt="Memory 5">
-  </div>
-  </div>
-
-</div>
+<div class="gallery"></div>
 
 <script>
-/* Animated Love Letter */
-const text = `My dear Emilie,
+let data = null;
 
-From the moment you appeared in my life,
-everything became brighter.
+/* Load JSON */
+fetch('data.json')
+  .then(res => res.json())
+  .then(json => {
+    data = json;
 
-Your smile, your eyes, your everything —
-they are my safe place in the world.
+    // Set love letter text
+    startTyping(data.lovemessage);
 
-Every moment with you
-became a memory I will never trade for anything.
+    // Load images dynamically
+    loadGallery(data.photos);
+  });
 
-This small page holds just a few of them,
-but my heart holds thousands.
-
-Happy March 8 my love ❤️`;
-
-let i=0;
-function typing(){
-  if(i < text.length){
-    document.getElementById("letter").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typing,40);
+/* Typing effect */
+function startTyping(text){
+  let i = 0;
+  function typing(){
+    if(i < text.length){
+      document.getElementById("letter").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing, 40);
+    }
   }
+  typing();
 }
-typing();
+
+/* Load gallery images */
+function loadGallery(photos){
+  const gallery = document.querySelector(".gallery");
+  gallery.innerHTML = ""; // clear existing hardcoded images
+
+  photos.forEach(src => {
+    const div = document.createElement("div");
+    div.className = "polaroid";
+
+    const img = document.createElement("img");
+    img.src = src;
+
+    div.appendChild(img);
+    gallery.appendChild(div);
+  });
+}
 
 /* Floating hearts */
 setInterval(()=>{
