@@ -14,13 +14,24 @@ To deploy this project run
 - Share the link with your girlfriend (you can use a QR code or send the link directly—choose whatever works best).
 - Enjoy seeing her emotions!
 
-## Code Setup:
-- Replace nickname with your girlfriend’s nickname in the index.html file:
+## Setup:
+- Customize the website by editing the data.json file:
 
-```js
-if(input==="nickname"){
+```json
+{
+  "nickname": "nickname",
+  "lovemessage": "Your love message here...",
+  "photos": [
+    "photo1.jpg",
+    "photo2.jpg",
+    "photo3.jpg",
+    "photo4.jpg",
+    "photo5.jpg"
+  ]
+}
 ```
 
-- Write your love letter in memories.html in the section labeled "Animated Love Letter".
-- Add the photos you want to display on the site to the project root folder, naming them sequentially: photo1.jpg, photo2.jpg … photo5.jpg.
-- That’s it—your website is ready!
+- Replace "nickname" with your girlfriend’s nickname.
+- Write your personalized love message inside the "lovemessage" field.
+- Add the photos you want to display to the project root folder and make sure their filenames match the ones listed in the "photos" array (e.g., photo1.jpg, photo2.jpg, etc.).
+- That’s it — your website is ready!
